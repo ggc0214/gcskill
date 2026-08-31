@@ -19,8 +19,9 @@ Use this mode when the available review material consists of one or more inspect
 
 1. Inspect every page of every selected report and state the page coverage.
 2. Build the canonical inventory of全部标准号 from headers, test rows, method cells, applicable-basis cells, requirements, notes, continuation tables, appendices, and footnotes. Preserve the complete prefix, number, part, and year; deduplicate only exact canonical standard numbers and retain every occurrence location.
+   Use `scripts/extract_standard_inventory.py` for searchable and OCR page text, then visually resolve unreadable pages and unresolved candidates.
 3. Apply `standard-cache.md` and query each canonical standard at most once. Determine the exact authoritative status, including at least `现行`, `废止`, `被代替`, and `即将实施`. Preserve an authoritative source's more precise status wording when applicable. Never infer status from a related number or a replacement result.
-4. Reconcile the detected inventory and lookup results by精确集合一致性. Every detected standard must have an occurrence location and one lookup outcome; missing and extra counts must both be zero before the result is final.
+4. Write the inventory and lookup results into the canonical audit JSON, normalize it, and run `scripts/audit_result.py validate` to enforce `精确集合一致性`. Every detected standard must have an occurrence location and one lookup outcome; missing and extra sets must both be empty before the result is final.
 5. Lead with coverage and lookup counts. For every canonical standard, output exactly:
    `标准号：...；`
    `现行状态：...；`
@@ -36,4 +37,3 @@ Use the full compliance workflow, full-mode output, and default Excel deliverabl
 ## Unsupported or ambiguous inputs
 
 If the supplied material does not fit any mode, state what is missing and ask one concise clarification. Do not silently expand a reduced mode into a full audit.
-

@@ -8,6 +8,8 @@ The request to show only problem items applies to the concise chat/text result, 
 
 Use the workbook structure and visual conventions established by `双面萌宠翻转帽_合规预审结果.xlsx`. Do not introduce a dashboard, cover page, summary cards, or a different sheet layout unless the user explicitly requests a new template.
 
+The fixed implementation is `scripts/build_audit_workbook.mjs`. It consumes the normalized, validated canonical JSON described in `audit-result.md`. Do not rebuild the workbook manually or maintain a second workbook-specific result structure.
+
 ## Required workbook structure
 
 Create an `.xlsx` workbook with these sheets in this order:
@@ -113,7 +115,14 @@ The concise chat/text result contains only problem items. The Excel workbook rem
 8. Render or open every sheet to check clipping, wrapping, row height, column width, filters, and readability.
 9. Export one final `.xlsx` and provide it together with the concise problem-only chat summary.
 
+Run the generator with a preview directory and inspect all four rendered sheets:
+
+```text
+node scripts/build_audit_workbook.mjs --input audit_result.normalized.json --output compliance_review.xlsx --preview-dir work/previews
+```
+
+The generator must reject incomplete coverage and unequal report/status standard sets before export. Its rendered previews are verification artifacts, not additional user deliverables.
+
 End the workbook's material/limitations sheet with:
 
 `本结果用于上架前风险预审，不等于正式批准上架，也不替代法务、检测机构或认证机构结论。`
-

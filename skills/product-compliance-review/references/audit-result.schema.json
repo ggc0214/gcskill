@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "product-compliance-review/audit-result.schema.json",
+  "title": "Product compliance audit result",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "audit_id",
+    "review_date",
+    "mode",
+    "inputs",
+    "coverage",
+    "report_rows",
+    "standards",
+    "issues",
+    "supported_claims",
+    "materials"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "audit_id": { "type": "string" },
+    "review_date": { "type": "string", "format": "date" },
+    "mode": { "enum": ["typo_only", "standards_only", "full"] },
+    "inputs": {
+      "type": "object",
+      "required": ["marketing_images", "reports"],
+      "properties": {
+        "marketing_images": { "type": "array", "items": { "$ref": "#/$defs/inputFile" } },
+        "reports": { "type": "array", "items": { "$ref": "#/$defs/inputFile" } }
+      }
+    },
+    "coverage": {
+      "type": "object",
+      "required": ["marketing_regions", "report_pages", "uncovered_marketing_regions", "uncovered_report_pages"],
+      "properties": {
+        "marketing_regions": { "type": "array", "items": { "type": "object" } },
+        "report_pages": { "type": "array", "items": { "type": "object" } },
+        "uncovered_marketing_regions": { "type": "array", "maxItems": 0 },
+        "uncovered_report_pages": { "type": "array", "maxItems": 0 }
+      }
+    },
+    "report_rows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "source_pdf", "page", "test_item", "standard_numbers"],
+        "properties": {
+          "id": { "type": "string" },
+          "source_pdf": { "type": "string" },
+          "page": { "type": "integer", "minimum": 1 },
+          "test_item": { "type": "string" },
+          "standard_numbers": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }
+        }
+      }
+    },
+    "standards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["standard_number", "status", "occurrences", "lookup_result", "lookup_method"],
+        "properties": {
+          "standard_number": { "type": "string" },
+          "status": { "type": "string" },
+          "occurrences": { "type": "array", "minItems": 1, "items": { "type": "object" } },
+          "lookup_result": { "type": "string", "minLength": 1 },
+          "lookup_method": { "type": "string" }
+        }
+      }
+    },
+    "issues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "category", "risk_level", "requirement", "finding", "recommendation", "source_order"],
+        "properties": {
+          "id": { "type": "string" },
+          "category": { "type": "string" },
+          "risk_level": { "type": "string" },
+          "requirement": { "enum": ["必须整改", "需补证", "人工确认"] },
+          "standard_numbers": { "type": "array", "items": { "type": "string" } },
+          "source_order": { "oneOf": [{ "type": "number" }, { "type": "array", "items": { "type": "number" } }] }
+        }
+      }
+    },
+    "supported_claims": { "type": "array", "items": { "type": "object" } },
+    "materials": { "type": "object" }
+  },
+  "$defs": {
+    "inputFile": {
+      "type": "object",
+      "required": ["path"],
+      "properties": {
+        "path": { "type": "string" },
+        "sha256": { "type": "string" },
+        "page_count": { "type": "integer", "minimum": 0 },
+        "width": { "type": "integer", "minimum": 0 },
+        "height": { "type": "integer", "minimum": 0 }
+      }
+    }
+  }
+}

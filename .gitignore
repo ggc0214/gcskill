@@ -6,4 +6,6 @@ __pycache__/
 *.db
 .DS_Store
 Thumbs.db
-
+node_modules/
+.audit-workbook-previews/
+outputs/
