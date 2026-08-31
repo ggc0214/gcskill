@@ -1,0 +1,15 @@
+{
+  "case_id": "confirmed-typo-yi-ci-rao-zha-mao",
+  "source_text": "易刺饶炸毛",
+  "issue_type": "确认错别字",
+  "confirmed_character_change": "饶→挠",
+  "corrected_text": "易刺挠炸毛",
+  "expected_risk": "橙色—整改后复审",
+  "expected_rectification": "必须整改",
+  "expected_sort_group": 0,
+  "must_precede": [
+    "需补证",
+    "人工确认"
+  ]
+}
+

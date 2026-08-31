@@ -1,0 +1,8 @@
+interface:
+  display_name: "商品合规预审"
+  short_description: "由 Codex 直接审核检测报告与宣传图片并生成可追溯证据结论"
+  default_prompt: "Use $product-compliance-review to directly audit the uploaded inspection reports and marketing images."
+
+policy:
+  allow_implicit_invocation: true
+

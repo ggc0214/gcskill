@@ -1,0 +1,37 @@
+version: 1
+keyword_groups:
+  - name: formaldehyde
+    claim_keywords: [甲醛]
+    project_keywords: [甲醛]
+  - name: aromatic_amines
+    claim_keywords: [芳香胺, 偶氮]
+    project_keywords: [芳香胺, 偶氮]
+  - name: heavy_metals
+    claim_keywords: [重金属]
+    project_keywords: [重金属, 特定元素的迁移]
+  - name: antistatic
+    claim_keywords: [抗静电, 防静电, 静电]
+    project_keywords: [抗静电, 防静电, 静电]
+  - name: down_content
+    claim_keywords: [绒子含量, 含绒量]
+    project_keywords: [绒子含量, 含绒量]
+  - name: fill_power
+    claim_keywords: [蓬松度]
+    project_keywords: [蓬松度]
+  - name: down_cleanliness
+    claim_keywords: [清洁度, 浊度]
+    project_keywords: [清洁度, 浊度]
+  - name: water_repellency
+    claim_keywords: [拒水, 防泼水, 抗沾湿, 沾湿]
+    project_keywords: [拒水, 沾水, 表面抗湿]
+  - name: heat_retention
+    claim_keywords: [保温结果, 保温温度, 保温效能, 小时保温, 锁温]
+    project_keywords: [保温效能, 保温性能]
+  - name: cold_retention
+    claim_keywords: [保冷结果, 保冷温度, 保冷效能, 小时保冷]
+    project_keywords: [保冷效能, 保冷性能]
+  - name: fluorescent_agent
+    claim_keywords: [无荧光剂, 不含荧光剂, 未添加荧光剂]
+    project_keywords: [荧光剂, 可迁移性荧光物质, 荧光增白剂]
+
+
